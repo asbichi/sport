@@ -1,0 +1,112 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Global Safety Net default catch-all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Reusable, hardened global security helpers
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function isAdmin() {
+      return isSignedIn() && 
+             'email' in request.auth.token && (
+               request.auth.token.email.matches('(?i).*admin.*') || 
+               request.auth.token.email.matches('(?i).*bichi.*')
+             );
+    }
+
+    // Entity Validation Blueprints
+    function isValidUser(data) {
+      return data.keys().hasAll(['full_name', 'email'])
+             && data.keys().size() == 2
+             && data.full_name is string && data.full_name.size() <= 100
+             && data.email is string && data.email.size() <= 100;
+    }
+
+    function isValidProduct(data) {
+      return data.product_name is string && data.product_name.size() <= 200
+             && data.price is number
+             && data.stock_quantity is int
+             && (data.get('category', '') is string && data.get('category', '').size() <= 100)
+             && (data.get('image_url', '') is string && data.get('image_url', '').size() <= 1000)
+             && (data.get('description', '') is string && data.get('description', '').size() <= 2000)
+             && (data.get('created_at', '') is string || data.get('created_at', null) is timestamp || data.get('created_at', null) == null);
+    }
+
+    function isValidWishlist(data) {
+      return data.keys().hasAll(['user_id', 'product_id'])
+             && data.keys().size() == 2
+             && data.user_id is string && data.user_id.size() <= 128
+             && data.product_id is string && data.product_id.size() <= 128;
+    }
+
+    function isValidOrder(data) {
+      return data.order_id is string && data.order_id.size() <= 128
+             && data.user_id is string && data.user_id.size() <= 128
+             && data.product_id is string && data.product_id.size() <= 128
+             && data.quantity is int
+             && data.total_price is number
+             && data.order_status is string && data.order_status.size() <= 50
+             && (data.get('order_date', '') is string || data.get('order_date', null) is timestamp || data.get('order_date', null) == null);
+    }
+
+    function isValidReview(data) {
+      return data.product_id is string && data.product_id.size() <= 128
+             && data.reviewer_name is string && data.reviewer_name.size() <= 100
+             && data.rating is int && data.rating >= 1 && data.rating <= 5
+             && data.comment is string && data.comment.size() <= 2000
+             && (data.get('created_at', '') is string || data.get('created_at', null) == null);
+    }
+
+    // Collection Security Rules
+
+    // 1. Users Collection
+    match /Users/{userId} {
+      allow read: if isSignedIn();
+      allow create, update: if isOwner(userId) && isValidUser(request.resource.data);
+      allow delete: if false;
+    }
+
+    // 2. Products Collection
+    match /Products/{productId} {
+      allow read, list: if true;
+      allow create: if isValidProduct(request.resource.data);
+      allow update: if isValidProduct(request.resource.data);
+      allow delete: if true;
+    }
+
+    // 3. Wishlists Collection
+    match /Wishlists/{wishlistId} {
+      allow read, list: if isSignedIn() && resource.data.user_id == request.auth.uid;
+      allow create: if isSignedIn() && request.resource.data.user_id == request.auth.uid && isValidWishlist(request.resource.data);
+      allow delete: if isSignedIn() && resource.data.user_id == request.auth.uid;
+    }
+
+    // 4. Orders Collection
+    match /Orders/{orderId} {
+      allow read, list: if isSignedIn() && (resource.data.user_id == request.auth.uid || isAdmin());
+      allow create: if isSignedIn() && request.resource.data.user_id == request.auth.uid && isValidOrder(request.resource.data);
+      allow update, delete: if isAdmin();
+    }
+
+    // 5. Reviews Collection
+    match /Reviews/{reviewId} {
+      allow read, list: if true;
+      allow create: if isValidReview(request.resource.data);
+      allow update, delete: if isAdmin();
+    }
+  }
+}

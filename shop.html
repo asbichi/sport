@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shop Collection - BICHI'S WEAR</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body class="bg-gray-50 text-gray-900 font-sans">
+    
+    <!-- Premium Graduated Metallic Top Banner -->
+    <div class="bg-gradient-to-r from-orange-600 via-amber-500 to-orange-600 text-white text-[10px] font-black uppercase tracking-[0.25em] py-3 text-center w-full z-50 shadow-md">
+        ⚡ FREE GLOBAL SHIPPING ON ORDERS OVER $100 | USE CODE: BICHIPRO ⚡
+    </div>
+
+    <!-- Luxury Glassmorphism Navbar -->
+    <nav class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-gray-100 transition-all duration-300">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-20 items-center">
+          <div class="flex items-center">
+            <a href="/" class="flex items-center gap-3 group">
+              <img src="https://i.ibb.co/bRDvmLgW/cea5b158-4e71-4446-84de-6924e17f2d51.jpg" alt="Logo" class="h-11 w-auto object-contain rounded-xl shadow-md border-2 border-orange-500/10 group-hover:border-orange-500 group-hover:scale-105 transition-all duration-300">
+              <span class="text-black font-black uppercase tracking-tighter text-2xl sm:text-3xl font-display group-hover:text-orange-600 transition-colors">BICHI'S <span class="text-orange-500">WEAR</span></span>
+            </a>
+          </div>
+          <div class="hidden md:flex space-x-10 items-center text-xs font-black uppercase tracking-[0.2em] text-gray-800 border-l border-gray-200 pl-10">
+            <a href="/shop.html" class="hover:text-orange-600 transition-colors">Shop All</a>
+            <a href="/shop.html" class="hover:text-orange-600 transition-colors">New Arrivals</a>
+            <a href="/shop.html" class="hover:text-orange-600 transition-colors">Accessories</a>
+          </div>
+          <div class="flex space-x-6 items-center border-l md:border-l-0 border-gray-200 pl-6 md:pl-0">
+            <div class="relative hidden lg:block">
+              <input type="text" class="live-search-input bg-gray-100 border-none rounded-full py-1.5 px-4 text-xs font-bold w-40 focus:w-60 transition-all focus:outline-none focus:ring-2 focus:ring-orange-500 text-black placeholder-gray-500" placeholder="Search elite gear...">
+              <svg class="w-3.5 h-3.5 absolute right-3 top-2.5 text-gray-500 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+              <div class="search-results-container absolute top-10 right-0 w-72 bg-white border border-gray-100 shadow-2xl rounded-xl z-50 hidden flex-col max-h-[60vh] overflow-y-auto"></div>
+            </div>
+            <a href="/login.html" id="nav-login" class="text-xs font-black uppercase tracking-widest hover:text-orange-600 transition-colors">Sign In</a>
+            <a href="/profile.html" id="nav-profile" class="hidden text-xs font-black uppercase tracking-widest hover:text-orange-600 transition-colors">Profile</a>
+            <button id="nav-logout" class="hidden text-xs font-black uppercase tracking-widest text-gray-500 hover:text-red-500 transition-colors">Sign Out</button>
+            <a href="/admin.html" id="nav-admin" class="hidden text-[10px] font-black uppercase tracking-widest bg-black text-white px-3 py-1.5 rounded-full hover:bg-gray-800 transition-colors">Admin</a>
+            <a href="/cart.html" class="flex items-center hover:text-orange-600 transition-colors group">
+              <span class="text-xs font-black uppercase tracking-widest mr-2">Cart</span>
+              <span id="cart-count" class="bg-gradient-to-br from-orange-600 to-amber-500 text-white text-[10px] items-center justify-center font-black w-5 h-5 flex rounded-full group-hover:scale-110 transition-transform shadow-md">0</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Header & Sliding Chips -->
+    <div class="gradient-brand-glow py-16 border-b border-zinc-900 text-white relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <h1 class="text-4xl md:text-6xl font-black uppercase italic tracking-tighter text-white drop-shadow-md">Shop <span class="text-orange-500">Collection</span></h1>
+        <p class="text-gray-400 mt-2 font-medium tracking-wide">Elite performance gear engineered for champions.</p>
+        
+        <!-- Interactive Chips -->
+        <div class="mt-8 flex flex-wrap gap-4 text-xs font-bold uppercase tracking-widest" id="top-category-chips">
+            <button class="chip-btn active bg-white text-black px-4 py-2 rounded-full border border-transparent hover:bg-gray-200 transition-colors" data-cat="">All Gear</button>
+            <button class="chip-btn bg-white/10 text-white px-4 py-2 rounded-full border border-white/20 hover:bg-white/20 transition-colors" data-cat="Training">Training Wear</button>
+            <button class="chip-btn bg-white/10 text-white px-4 py-2 rounded-full border border-white/20 hover:bg-white/20 transition-colors" data-cat="Jerseys">Jerseys</button>
+            <button class="chip-btn bg-white/10 text-white px-4 py-2 rounded-full border border-white/20 hover:bg-white/20 transition-colors" data-cat="Boots">Boots</button>
+            <button class="chip-btn bg-white/10 text-white px-4 py-2 rounded-full border border-white/20 hover:bg-white/20 transition-colors" data-cat="Footballs">Footballs</button>
+            <button class="chip-btn bg-white/10 text-white px-4 py-2 rounded-full border border-white/20 hover:bg-white/20 transition-colors" data-cat="Accessories">Accessories</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Shop Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+      <!-- Toolbar -->
+      <div class="flex flex-col sm:flex-row justify-between items-center mb-8 gap-4 bg-white p-4 rounded border border-gray-100 shadow-sm">
+         <!-- Search box -->
+         <div class="flex items-center w-full sm:w-auto border border-gray-300 rounded px-3 py-2 focus-within:border-black transition-colors bg-white">
+            <span class="text-gray-400 mr-2">🔍</span>
+            <input type="text" id="search-input" placeholder="Search gear..." class="w-full sm:w-64 bg-transparent outline-none text-sm font-medium placeholder-gray-400 text-gray-900">
+         </div>
+         
+         <!-- Sort Dropdown -->
+         <div class="flex items-center w-full sm:w-auto">
+            <label for="sort-select" class="text-xs font-bold uppercase tracking-widest text-gray-500 mr-3 whitespace-nowrap">Sort By</label>
+            <select id="sort-select" class="w-full sm:w-auto p-2 bg-gray-50 border border-gray-300 rounded outline-none text-sm font-bold uppercase tracking-wider text-gray-900 cursor-pointer hover:border-gray-400 transition">
+              <option value="latest">Newest First</option>
+            </select>
+         </div>
+      </div>
+
+      <!-- Main Products Grid -->
+      <div id="shop-products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="col-span-full py-12 text-center text-gray-500">Loading products...</div>
+      </div>
+    </div>
+
+    <script type="module" src="/js/firebase.js"></script>
+    <script type="module" src="/js/auth.js"></script>
+    <script type="module" src="/js/cart.js"></script>
+    <script type="module" src="/js/app.js"></script>
+    <script type="module">
+      import { firebaseDb } from '/js/firebase.js';
+      import { renderProducts, trySeedDatabase } from '/js/app.js';
+
+      const grid = document.getElementById('shop-products-grid');
+      const sortSelect = document.getElementById('sort-select');
+      const categoryChips = document.getElementById('top-category-chips');
+      const searchInput = document.getElementById('search-input');
+      
+      let allProducts = [];
+
+      async function loadShop() {
+        try {
+           const { data: existingProducts, error: checkErr } = await firebaseDb.getAll('Products');
+           if (checkErr) {
+               grid.innerHTML = '<div class="col-span-full py-12 text-center">No products table found.</div>';
+               return;
+           }
+           
+           let combinedProducts = (existingProducts || []);
+           
+           // Mock Data
+           const { seedData } = await import('/js/seed.js');
+
+           const existingNames = combinedProducts.map(p => p.product_name);
+           const newItemsToInsert = seedData.filter(item => !existingNames.includes(item.product_name));
+
+           if (newItemsToInsert.length > 0) {
+               try {
+                   const inserts = newItemsToInsert.map(({id, ...rest}) => rest);
+                   const { error: insertErr } = await firebaseDb.insert('Products', newItemsToInsert);
+                   if (insertErr) throw insertErr;
+                   
+                   const { data: refetched } = await firebaseDb.getAll('Products');
+                   if (refetched) combinedProducts = refetched;
+               } catch (err) {
+                   console.error("Supabase insert failed, using mock data as fallback.", err);
+                   combinedProducts = [...newItemsToInsert, ...combinedProducts];
+               }
+           }
+
+            allProducts = combinedProducts;
+            
+            // Handle search and category query params
+            const urlParams = new URLSearchParams(window.location.search);
+            const initialSearch = urlParams.get('search');
+            if (initialSearch && searchInput) {
+                searchInput.value = initialSearch;
+            }
+            const initialCat = urlParams.get('category');
+            if (initialCat && categoryChips) {
+                categoryChips.querySelectorAll('.chip-btn').forEach(btn => {
+                    const btnCat = btn.getAttribute('data-cat') || '';
+                    if (btnCat.toLowerCase() === initialCat.toLowerCase()) {
+                        categoryChips.querySelectorAll('.chip-btn').forEach(b => {
+                            b.classList.remove('active', 'bg-white', 'text-black', 'border-transparent');
+                            b.classList.add('bg-white/10', 'text-white', 'border-white/20');
+                        });
+                        btn.classList.add('active', 'bg-white', 'text-black', 'border-transparent');
+                        btn.classList.remove('bg-white/10', 'text-white', 'border-white/20');
+                    }
+                });
+            }
+
+            applyFilters();
+        } catch (e) {
+           console.error(e);
+           grid.innerHTML = '<div class="col-span-full py-12 text-center text-red-500">Error loading products.</div>';
+        }
+      }
+
+      function applyFilters() {
+         const activeCatBtn = categoryChips.querySelector('.active');
+         const cat = activeCatBtn ? activeCatBtn.getAttribute('data-cat') : '';
+         const sort = sortSelect.value;
+         const searchTerm = searchInput.value.toLowerCase().trim();
+         
+         let filtered = [...allProducts];
+         if (cat) {
+            filtered = filtered.filter(p => (p.category || '').toLowerCase() === cat.toLowerCase());
+         }
+         
+         if (searchTerm) {
+            filtered = filtered.filter(p => 
+                (p.product_name || '').toLowerCase().includes(searchTerm) || 
+                (p.description || '').toLowerCase().includes(searchTerm)
+            );
+         }
+
+         if (sort === 'latest') {
+             filtered.sort((a,b) => new Date(b.created_at) - new Date(a.created_at));
+         }
+
+         if(filtered.length === 0) {
+             grid.innerHTML = '<div class="col-span-full py-12 text-center text-gray-500">No products found in this category.</div>';
+         } else {
+             renderProducts(filtered, grid);
+         }
+      }
+
+      sortSelect.addEventListener('change', applyFilters);
+      searchInput.addEventListener('input', applyFilters);
+      
+      categoryChips.querySelectorAll('.chip-btn').forEach(btn => {
+         btn.addEventListener('click', (e) => {
+             categoryChips.querySelectorAll('.chip-btn').forEach(b => {
+                 b.classList.remove('active', 'bg-white', 'text-black', 'border-transparent');
+                 b.classList.add('bg-white/10', 'text-white', 'border-white/20');
+             });
+             const target = e.target;
+             target.classList.remove('bg-white/10', 'text-white', 'border-white/20');
+             target.classList.add('active', 'bg-white', 'text-black', 'border-transparent');
+             applyFilters();
+         });
+      });
+
+      document.addEventListener('DOMContentLoaded', loadShop);
+    </script>
+  </body>
+</html>

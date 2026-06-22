@@ -1,0 +1,6 @@
+{
+  "name": "Bichi",
+  "description": "A modern football eCommerce website featuring jerseys, boots, and other gear, backed by a relational database.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

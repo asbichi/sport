@@ -1,0 +1,146 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "Registered user profile details",
+      "type": "object",
+      "properties": {
+        "full_name": {
+          "type": "string",
+          "description": "User's complete name"
+        },
+        "email": {
+          "type": "string",
+          "description": "User's registrational email"
+        }
+      },
+      "required": ["full_name", "email"]
+    },
+    "Product": {
+      "title": "Product",
+      "description": "Store inventory items",
+      "type": "object",
+      "properties": {
+        "product_name": {
+          "type": "string",
+          "description": "Full name of product"
+        },
+        "category": {
+          "type": "string",
+          "description": "Catalog division category"
+        },
+        "price": {
+          "type": "number",
+          "description": "Direct item pricing"
+        },
+        "stock_quantity": {
+          "type": "integer",
+          "description": "Current quantity in stock"
+        },
+        "image_url": {
+          "type": "string",
+          "description": "Optional illustration image asset URL"
+        },
+        "description": {
+          "type": "string",
+          "description": "Full text of product review"
+        }
+      },
+      "required": ["product_name", "price", "stock_quantity"]
+    },
+    "Wishlist": {
+      "title": "Wishlist",
+      "description": "Personalized user saved gear",
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "string",
+          "description": "User UID who owns this entry"
+        },
+        "product_id": {
+          "type": "string",
+          "description": "Target ID of product being saved"
+        }
+      },
+      "required": ["user_id", "product_id"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "Purchase transaction logging",
+      "type": "object",
+      "properties": {
+        "order_id": {
+          "type": "string",
+          "description": "Group code representing single multi-item checkout"
+        },
+        "user_id": {
+          "type": "string",
+          "description": "Owner user identifiers code"
+        },
+        "product_id": {
+          "type": "string",
+          "description": "Product purchase element identifier"
+        },
+        "quantity": {
+          "type": "integer",
+          "description": "Purchased volume amount"
+        },
+        "total_price": {
+          "type": "number",
+          "description": "Computed pricing product"
+        },
+        "order_status": {
+          "type": "string",
+          "description": "Pending, Fulfilled, or Delivered status"
+        }
+      },
+      "required": ["order_id", "user_id", "product_id", "quantity", "total_price", "order_status"]
+    },
+    "Review": {
+      "title": "Review",
+      "description": "Submissions rating products",
+      "type": "object",
+      "properties": {
+        "product_id": {
+          "type": "string",
+          "description": "Reviews target products index"
+        },
+        "reviewer_name": {
+          "type": "string",
+          "description": "Review writer public display identification"
+        },
+        "rating": {
+          "type": "integer",
+          "description": "Star scale value 1 to 5"
+        },
+        "comment": {
+          "type": "string",
+          "description": "Message description of buyer"
+        }
+      },
+      "required": ["product_id", "reviewer_name", "rating", "comment"]
+    }
+  },
+  "firestore": {
+    "Users/{userId}": {
+      "schema": "User",
+      "description": "Stored register user profiles"
+    },
+    "Products/{productId}": {
+      "schema": "Product",
+      "description": "Sports gear, jerseys and boot categories"
+    },
+    "Wishlists/{wishlistId}": {
+      "schema": "Wishlist",
+      "description": "Individual items saved by users"
+    },
+    "Orders/{orderId}": {
+      "schema": "Order",
+      "description": "Logging checkouts of items"
+    },
+    "Reviews/{reviewId}": {
+      "schema": "Review",
+      "description": "Feedback elements submitted by customers"
+    }
+  }
+}
